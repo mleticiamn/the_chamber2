@@ -5,7 +5,7 @@ import textwrap
 
 pygame.init()
 screen = pygame.display.set_mode((1000, 700))
-pygame.display.set_caption("THE CHAMBER - A Social Experiment Game")
+pygame.display.set_caption("THE CHAMBER - Leitura Mental")
 font_large = pygame.font.SysFont("courier", 50)
 font = pygame.font.SysFont("courier", 22)
 small_font = pygame.font.SysFont("courier", 16)
@@ -14,59 +14,33 @@ clock = pygame.time.Clock()
 # --- Game Configuration ---
 MIN_PLAYERS = 3
 MAX_PLAYERS = 7
-MAX_ROUNDS = 6
+MAX_ROUNDS = 1 # ALTERADO: O jogo agora tem apenas 1 rodada
 COLOR_PRIMARY = (0, 200, 255)
 COLOR_SECONDARY = (200, 255, 255)
 COLOR_BG = (5, 5, 15)
 COLOR_DANGER = (255, 50, 50)
-COLOR_TRUST = (50, 255, 150)
+COLOR_SUCCESS = (50, 255, 150)
 
-# --- Histórias (Todos Inocentes) ---
-STORY_POOL = [
-    ("Eu era paramédico. Numa noite caótica, usei um atalho para chegar a uma vítima de acidente, mas bati a ambulância. O atraso foi de poucos minutos, mas a pessoa não resistiu. Fui investigado e absolvido, pois a condição dela já era fatal, mas a dúvida de que aqueles minutos poderiam ter feito a diferença me assombra.", 
-     "Por minha causa, a ajuda atrasou... e a pessoa não sobreviveu.", False),
-
-    ("No meu antigo emprego, descobri que meu gerente, um bom homem em apuros financeiros, estava desviando pequenas quantias. Em vez de denunciá-lo e arruinar sua família, eu o confrontei em particular. Ele prometeu devolver tudo e o fez. Guardei o segredo, mas sempre temi ser visto como cúmplice.", 
-     "Eu sabia do roubo o tempo todo... e acobertei o responsável.", False),
-
-    ("Minha irmã mais nova estava num relacionamento abusivo. Uma noite, ela me ligou chorando. O namorado dela havia pegado seu passaporte para impedi-la de viajar. Fui até lá e, enquanto ele estava no banho, entrei no quarto e peguei o passaporte de volta. Ele nunca soube que fui eu, achou que tinha perdido, e minha irmã conseguiu sair da cidade em segurança.", 
-     "Eu invadi a casa... e roubei um documento importante de lá.", False),
-
-    ("Na faculdade, eu fazia parte de um grupo de ativismo. Numa manifestação que deveria ser pacífica, um membro se exaltou e quebrou a vitrine de uma loja. Em meio ao caos e sirenes, todos nós corremos. Nunca contei a ninguém que eu estava lá e vi quem foi o culpado, por medo de ser associado ao ato.", 
-     "Eu estava na cena do crime quando tudo aconteceu... e fugi com os outros.", False),
-
-    ("Enquanto voltava para casa, encontrei uma carteira no chão com uma grande quantidade de dinheiro e todos os documentos. Por um momento, a tentação de ficar com o dinheiro foi enorme, pois eu estava cheio de dívidas. Hesitei por quase uma hora, mas no fim minha consciência pesou e eu devolvi a carteira intacta ao dono.", 
-     "Eu estava com uma fortuna que não era minha em mãos... e um mar de dívidas para pagar.", False),
-    
-    ("Eu trabalhava como pesquisador em um laboratório. Estávamos perto de uma descoberta, mas um lote crucial de amostras foi contaminado por um erro meu no manuseio. Em vez de admitir e atrasar o projeto em meses, joguei as amostras fora e culpei uma 'falha no equipamento de refrigeração'. A pesquisa foi refeita e eventualmente funcionou, mas foi baseada numa mentira minha.",
-     "Eu destruí evidências cruciais... e falsifiquei um relatório para encobrir.", False),
-
-    ("Meu melhor amigo ia me fazer uma visita surpresa, mas eu vi uma mensagem sem querer e descobri. Fingi surpresa total quando ele chegou, com direito a gritos e espanto. A alegria dele em me surpreender foi tão genuína que nunca tive coragem de contar que eu já sabia de tudo. Sinto que nossa amizade tem um pequeno pilar falso.",
-     "Toda a alegria dele foi baseada em uma encenação... eu menti na cara dele.", False),
-
-    ("Eu vendi meu carro antigo para um jovem comprador. Durante a negociação, 'esqueci' de mencionar um problema intermitente na caixa de câmbio que só aparecia em viagens longas. Omiti a informação para conseguir um preço melhor. Não é ilegal, mas sei que não foi honesto.",
-     "Eu omiti uma informação deliberadamente... para enganar o comprador e lucrar mais.", False),
-    
-    ("Durante uma prova importante na universidade, vi o aluno mais inteligente da turma colar descaradamente. O professor não percebeu. Fiquei em um dilema: se eu o denunciasse, ele seria expulso; se eu ficasse quieto, seria injusto com todos os outros. Optei por não dizer nada e conviver com isso.",
-     "Eu tinha conhecimento de uma fraude... e me recusei a cooperar com a verdade.", False),
-
-    ("Meu vizinho viajou e me pediu para cuidar de seu gato. Sem querer, deixei a porta aberta e o gato fugiu. Passei a noite procurando, sem sucesso. No dia seguinte, comprei um gato idêntico numa pet shop e o coloquei na casa dele. O vizinho voltou e nunca notou a troca. Sinto um peso enorme por ter 'substituído' seu animal de estimação.",
-     "Houve um desaparecimento sob minha vigilância... então eu encobri e forjei a identidade do substituto.", False),
-
-    ("Recebi um depósito por engano na minha conta bancária, uma quantia considerável. A regra do banco é clara: eu deveria informar imediatamente. Mas eu estava passando por um aperto financeiro. Esperei duas semanas para ver se alguém notaria. Ninguém notou. Só então, com a consciência pesada, liguei para o banco e relatei o erro. O dinheiro foi estornado.",
-     "Uma grande quantia em dinheiro apareceu na minha conta... e eu a mantive em segredo por semanas.", False),
-
-    ("Eu estava responsável por regar a planta rara e caríssima de um amigo durante sua viagem. Esqueci por vários dias e a planta morreu. Em pânico, fui a uma floricultura especializada, gastei uma fortuna e comprei uma planta idêntica para colocar no lugar. Meu amigo elogiou como a planta estava 'ainda mais bonita'.",
-     "O original morreu em minhas mãos... então eu o substituí por uma cópia.", False),
-
-    ("Numa entrevista de emprego, menti sobre ser fluente em espanhol, pois era um requisito. Consegui o emprego. Na primeira semana, descobri que teria uma videoconferência com um cliente do Chile. Passei três noites em claro, usando aplicativos e fazendo aulas intensivas, só para conseguir me virar na reunião. Foi um sufoco, mas ninguém desconfiou.",
-     "Eu falsifiquei uma qualificação essencial... e enganei a todos.", False),
-
-    ("Eu gerenciava as redes sociais de um pequeno negócio. Para aumentar os números rapidamente, comprei um pacote de seguidores falsos (bots). As métricas inflaram, o dono ficou feliz com o 'crescimento', mas eu sei que o engajamento é uma farsa e a qualquer momento a plataforma pode remover todos os fakes.",
-     "Os números que eu apresentei eram uma fraude... eu comprei o resultado.", False),
-
-    ("Eu peguei emprestado um livro raro da biblioteca da faculdade. Em casa, derramei café nele, manchando várias páginas. Em vez de pagar a multa altíssima, usei um secador e um pouco de maquiagem para disfarçar a mancha. Devolvi o livro e o bibliotecário não notou nada. Alguém um dia vai descobrir.",
-     "Eu danifiquei propriedade alheia... e adulterei a cena para esconder as provas.", False)
+# --- Baralho de Perguntas ---
+QUESTION_POOL = [
+    "Você contaria uma mentira para proteger um amigo de uma consequência grave?",
+    "Você aceitaria 1 milhão de reais para nunca mais ver seu melhor amigo?",
+    "Você denunciaria um colega de trabalho por roubar algo pequeno da empresa?",
+    "Você sacrificaria a vida de um animal de estimação para salvar um estranho?",
+    "Você leria o diário ou as mensagens privadas do seu parceiro(a) se tivesse a chance?",
+    "Você voltaria no tempo para consertar seu maior erro, mesmo que isso mudasse quem você é hoje?",
+    "Você preferiria ter uma vida extremamente feliz, mas curta, ou uma vida normal, mas longa?",
+    "Você aceitaria um emprego que paga muito bem, mas que você considera eticamente questionável?",
+    "Você perdoaria uma traição?",
+    "Você revelaria um segredo de outra pessoa se isso significasse fazer justiça?",
+    "Você escolheria saber a data exata da sua morte?",
+    "Você preferiria ser amado por todos, mas não respeitado?",
+    "Você desistiria de toda a sua privacidade em troca de segurança absoluta?",
+    "Você prefere a verdade dolorosa ou uma mentira confortável?",
+    "Você arriscaria sua vida para salvar um membro da sua família?",
+    "Você usaria um 'bot' para vencer em um jogo online competitivo?",
+    "Se você pudesse ser invisível por um dia, você faria algo ilegal?",
+    "Você acredita em segundas chances para tudo?",
 ]
 
 # --- Helper Functions & Classes ---
@@ -87,9 +61,9 @@ def wrap_text_pixel(text, font, max_pixel_width):
     return lines
 
 class Player:
-    def __init__(self, player_id, story, fragment):
-        self.id, self.story, self.fragment = player_id, story, fragment
-        self.is_eliminated, self.votes = False, 0
+    def __init__(self, player_id):
+        self.id, self.score = player_id, 0
+        self.hand, self.chosen_question, self.secret_answer = [], None, None
 
 class Button:
     def __init__(self, rect, text, text_color=COLOR_PRIMARY, border_color=COLOR_PRIMARY, hover_color=COLOR_SECONDARY):
@@ -97,8 +71,7 @@ class Button:
         self.text, self.text_color = text, text_color
         self.border_color, self.hover_color, self.is_hovered = border_color, hover_color, False
 
-    def draw(self, surface, y_offset=0):
-        self.rect.y = self.original_y + y_offset
+    def draw(self, surface):
         color = self.hover_color if self.is_hovered else self.border_color
         pygame.draw.rect(surface, color, self.rect, 2, border_radius=5)
         label = font.render(self.text, True, color)
@@ -111,7 +84,7 @@ class Button:
 # --- Game Screens ---
 def intro_screen():
     running, title = True, font_large.render("THE CHAMBER", True, COLOR_PRIMARY)
-    dilemma_lines = ["VOCÊ E DESCONHECIDOS ESTÃO PRESOS EM UM JOGO.", "A CADA RODADA, SUAS HISTÓRIAS SERÃO REVELADAS EM PEDAÇOS.", "VOTEM PARA ELIMINAR AQUELE EM QUEM MENOS CONFIAM.", "Até onde você iria para sobreviver?"]
+    dilemma_lines = ["UM JOGO SOBRE LER AS PESSOAS.", "QUEM VOCÊ ACHA QUE CONHECE MELHOR?", "ESCOLHA UMA PERGUNTA. RESPONDA EM SECRETO.", "ADIVINHE AS RESPOSTAS DOS OUTROS PARA PONTUAR.", "Prepare-se para se surpreender."]
     start_button = Button((400, 550, 200, 50), "INICIAR JOGO")
     while running:
         draw_background(); mouse_pos = pygame.mouse.get_pos(); start_button.check_hover(mouse_pos)
@@ -144,255 +117,189 @@ def choose_players_screen():
                 elif ok_btn.is_clicked(mouse_pos): return players_num
         pygame.display.flip(); clock.tick(30)
 
-def transition_screen(next_player_id):
-    running, ready_button = True, Button((350, 400, 300, 50), "EU ESTOU PRONTO")
-    while running:
-        draw_background(); mouse_pos = pygame.mouse.get_pos(); ready_button.check_hover(mouse_pos)
-        pass_text, player_text = font.render("Passe o dispositivo para o", True, COLOR_SECONDARY), font_large.render(f"JOGADOR {next_player_id}", True, COLOR_PRIMARY)
-        instruction_text = small_font.render("Os outros não devem olhar.", True, (150,150,150))
-        screen.blit(pass_text, pass_text.get_rect(centerx=500, y=250)); screen.blit(player_text, player_text.get_rect(centerx=500, y=300)); screen.blit(instruction_text, instruction_text.get_rect(centerx=500, y=360))
-        ready_button.draw(screen)
-        for event in pygame.event.get():
-            if event.type == pygame.QUIT: pygame.quit(), sys.exit()
-            if event.type == pygame.MOUSEBUTTONDOWN:
-                if ready_button.is_clicked(mouse_pos): running = False
-        pygame.display.flip(); clock.tick(30)
-
-def show_full_story(player):
-    ok_button, story_lines = Button((400, 600, 200, 50), "MEMORIZEI"), wrap_text_pixel(player.story, small_font, 900)
-    running = True
-    while running:
-        draw_background(); mouse_pos = pygame.mouse.get_pos(); ok_button.check_hover(mouse_pos)
-        title = font.render(f"Jogador {player.id}, esta é a sua verdade:", True, COLOR_PRIMARY)
-        screen.blit(title, (50, 50))
-        for i, line in enumerate(story_lines):
-            screen.blit(small_font.render(line, True, COLOR_SECONDARY), (50, 120 + i * 25))
-        ok_button.draw(screen)
-        for event in pygame.event.get():
-            if event.type == pygame.QUIT: pygame.quit(), sys.exit()
-            if event.type == pygame.MOUSEBUTTONDOWN:
-                if ok_button.is_clicked(mouse_pos): running = False
-        pygame.display.flip(); clock.tick(30)
-
-def round_transition_screen(round_num):
-    running, start_button = True, Button((380, 400, 240, 50), "COMEÇAR RODADA")
-    title_text, sub_text = (f"FASE DE HISTÓRIAS CONCLUÍDA", f"A Rodada {round_num} de discussão vai começar.") if round_num == 1 else (f"RODADA {round_num - 1} FINALIZADA", f"Preparem-se para a Rodada {round_num}.")
-    title_surf, sub_surf = font_large.render(title_text, True, COLOR_PRIMARY), font.render(sub_text, True, COLOR_SECONDARY)
-    while running:
-        draw_background(); mouse_pos = pygame.mouse.get_pos(); start_button.check_hover(mouse_pos)
-        screen.blit(title_surf, title_surf.get_rect(centerx=500, y=250)); screen.blit(sub_surf, sub_surf.get_rect(centerx=500, y=320))
-        start_button.draw(screen)
-        for event in pygame.event.get():
-            if event.type == pygame.QUIT: pygame.quit(), sys.exit()
-            if event.type == pygame.MOUSEBUTTONDOWN:
-                if start_button.is_clicked(mouse_pos): running = False
-        pygame.display.flip(); clock.tick(30)
-
-def discussion_screen(players, round_num):
-    running, start_voting_button = True, Button((380, 630, 240, 50), "INICIAR VOTAÇÃO")
-    while running:
-        draw_background(); mouse_pos = pygame.mouse.get_pos(); start_voting_button.check_hover(mouse_pos)
-        title, instr = font_large.render(f"RODADA {round_num} - DISCUSSÃO", True, COLOR_PRIMARY), font.render("Discutam os fragmentos. Façam suas acusações e defesas.", True, COLOR_SECONDARY)
-        screen.blit(title, title.get_rect(centerx=500, y=30)); screen.blit(instr, instr.get_rect(centerx=500, y=80))
-        for i, p in enumerate(players):
-            col, row = i % 4, i // 4; x, y = 50 + col * 240, 120 + row * 260
-            box_rect = pygame.Rect(x, y, 220, 170)
-            box_color, text_color = ((30,30,30), (100,100,100)) if p.is_eliminated else (COLOR_PRIMARY, COLOR_SECONDARY)
-            pygame.draw.rect(screen, box_color, box_rect, 2, border_radius=5)
-            screen.blit(font.render(f"Jogador {p.id}", True, box_color), (x + 10, y + 10))
-            if p.is_eliminated:
-                screen.blit(font_large.render("ELIMINADO", True, COLOR_DANGER), font_large.render("ELIMINADO", True, COLOR_DANGER).get_rect(center=box_rect.center))
-            else:
-                for j, line in enumerate(wrap_text_pixel(p.fragment, small_font, box_rect.width - 20)):
-                    screen.blit(small_font.render(line, True, text_color), (x + 10, y + 40 + j * 20))
-        start_voting_button.draw(screen)
-        for event in pygame.event.get():
-            if event.type == pygame.QUIT: pygame.quit(), sys.exit()
-            if event.type == pygame.MOUSEBUTTONDOWN:
-                if start_voting_button.is_clicked(mouse_pos): running = False
-        pygame.display.flip(); clock.tick(30)
-
-def voter_transition_screen(next_voter_id):
-    running, ready_button = True, Button((350, 400, 300, 50), "ESTOU PRONTO PARA VOTAR")
-    while running:
-        draw_background(); mouse_pos = pygame.mouse.get_pos(); ready_button.check_hover(mouse_pos)
-        title_text, pass_text = font.render("VOTO REGISTRADO.", True, COLOR_SECONDARY), font.render("Passe o dispositivo para o", True, COLOR_SECONDARY)
-        player_text = font_large.render(f"JOGADOR {next_voter_id}", True, COLOR_PRIMARY)
-        screen.blit(title_text, title_text.get_rect(centerx=500, y=200)); screen.blit(pass_text, pass_text.get_rect(centerx=500, y=280)); screen.blit(player_text, player_text.get_rect(centerx=500, y=320))
-        ready_button.draw(screen)
-        for event in pygame.event.get():
-            if event.type == pygame.QUIT: pygame.quit(), sys.exit()
-            if event.type == pygame.MOUSEBUTTONDOWN:
-                if ready_button.is_clicked(mouse_pos): running = False
-        pygame.display.flip(); clock.tick(30)
-
-def vote_tally_screen(players, eliminated_player):
-    running = True
-    title_text, title_color = (f"JOGADOR {eliminated_player.id} FOI ELIMINADO", COLOR_DANGER) if eliminated_player else ("NINGUÉM FOI ELIMINADO (EMPATE)", COLOR_PRIMARY)
+def market_draft_screen(current_player, market_cards, pick_number):
+    running, selected_card_index = True, -1
+    MAX_COLS, CARD_WIDTH, CARD_HEIGHT, GAP_X, GAP_Y = 4, 220, 160, 20, 20
     while running:
         draw_background(); mouse_pos = pygame.mouse.get_pos()
-        y_offset = 60
-        for i, line in enumerate(wrap_text_pixel(title_text, font_large, 900)):
-            title_surf = font_large.render(line, True, title_color)
-            screen.blit(title_surf, title_surf.get_rect(centerx=500, y=y_offset)); y_offset += 50
-        
-        # NOVO: Revela que o jogador eliminado era inocente
-        if eliminated_player:
-            innocent_text = font.render(f"Jogador {eliminated_player.id} era inocente.", True, COLOR_DANGER)
-            screen.blit(innocent_text, innocent_text.get_rect(centerx=500, y=y_offset + 10)); y_offset += 40
-        
-        votes_y, vote_title = y_offset + 40, font.render("Votos da rodada:", True, COLOR_PRIMARY)
-        screen.blit(vote_title, vote_title.get_rect(centerx=500, y=y_offset))
-        votes_y += 40
-        for p in sorted(players, key=lambda p: p.id):
-            if p.votes > 0:
-                screen.blit(font.render(f"Jogador {p.id} recebeu {p.votes} voto(s)", True, COLOR_SECONDARY), font.render(f"Jogador {p.id} recebeu {p.votes} voto(s)", True, COLOR_SECONDARY).get_rect(centerx=500, y=votes_y)); votes_y += 40
-        
-        button_to_show = Button((400, 600, 200, 50), "CONTINUAR")
-        button_to_show.check_hover(mouse_pos); button_to_show.draw(screen)
+        title = font_large.render(f"VEZ DO JOGADOR {current_player.id}", True, COLOR_PRIMARY)
+        screen.blit(title, title.get_rect(centerx=500, y=50))
+        instr = font.render(f"Escolha sua {pick_number}ª carta do mercado.", True, COLOR_SECONDARY)
+        screen.blit(instr, instr.get_rect(centerx=500, y=120))
+        card_rects = []
+        for i, card_text in enumerate(market_cards):
+            row, col = i // MAX_COLS, i % MAX_COLS
+            x = (1000 - (MAX_COLS * CARD_WIDTH + (MAX_COLS - 1) * GAP_X)) // 2 + col * (CARD_WIDTH + GAP_X)
+            y = 180 + row * (CARD_HEIGHT + GAP_Y)
+            card_rects.append(pygame.Rect(x, y, CARD_WIDTH, CARD_HEIGHT))
+        for i, rect in enumerate(card_rects):
+            color = COLOR_SUCCESS if i == selected_card_index else COLOR_PRIMARY
+            pygame.draw.rect(screen, color, rect, 2, border_radius=10)
+            for j, line in enumerate(wrap_text_pixel(market_cards[i], small_font, rect.width - 20)):
+                screen.blit(small_font.render(line, True, COLOR_SECONDARY), small_font.render(line, True, COLOR_SECONDARY).get_rect(centerx=rect.centerx, y=rect.y + 20 + j * 20))
         for event in pygame.event.get():
             if event.type == pygame.QUIT: pygame.quit(), sys.exit()
             if event.type == pygame.MOUSEBUTTONDOWN:
-                if button_to_show.is_clicked(mouse_pos): running = False
+                for i, rect in enumerate(card_rects):
+                    if rect.collidepoint(mouse_pos):
+                        chosen_card = market_cards.pop(i)
+                        return chosen_card, market_cards
         pygame.display.flip(); clock.tick(30)
 
-def round_screen(players, round_num, max_rounds):
-    active_players, votes = [p for p in players if not p.is_eliminated], {}
-    vote_buttons = {}
-    for i, p in enumerate(players):
-        col, row = i % 4, i // 4; x, y = 50 + col * 240, 120 + row * 280
-        rect = (x + (220 - 200) // 2, y + 185, 200, 40)
-        vote_buttons[p.id] = Button(rect, f"Votar Jogador {p.id}")
-    peace_button = Button((350, 630, 300, 50), "NÃO HÁ CULPADOS", text_color=COLOR_PRIMARY, border_color=COLOR_PRIMARY, hover_color=COLOR_PRIMARY)
-    current_voter_index = 0
-    while len(votes) < len(active_players):
+def choose_main_question_screen(player):
+    running, selected_card_index = True, -1
+    card_rects = [pygame.Rect(200, 250, 250, 150), pygame.Rect(550, 250, 250, 150)]
+    confirm_button = Button((400, 500, 200, 50), "CONFIRMAR")
+    while running:
         draw_background(); mouse_pos = pygame.mouse.get_pos()
-        voter = active_players[current_voter_index]
-        title, instr = font.render(f"RODADA {round_num} - Vez do Jogador {voter.id}", True, COLOR_PRIMARY), font.render("Vote em quem você acredita ser o culpado.", True, COLOR_SECONDARY)
-        screen.blit(title, title.get_rect(centerx=500, y=30)); screen.blit(instr, instr.get_rect(centerx=500, y=65))
-        for i, p in enumerate(players):
-            col, row = i % 4, i // 4; x, y = 50 + col * 240, 120 + row * 280
-            box_rect = pygame.Rect(x, y, 220, 170)
-            box_color, text_color = ((30,30,30), (100,100,100)) if p.is_eliminated else (COLOR_PRIMARY, COLOR_SECONDARY)
-            pygame.draw.rect(screen, box_color, box_rect, 2, border_radius=5)
-            screen.blit(font.render(f"Jogador {p.id}", True, box_color), (x + 10, y + 10))
-            if p.is_eliminated:
-                screen.blit(font_large.render("ELIMINADO", True, COLOR_DANGER), font_large.render("ELIMINADO", True, COLOR_DANGER).get_rect(center=box_rect.center))
-            else:
-                for j, line in enumerate(wrap_text_pixel(p.fragment, small_font, box_rect.width - 20)):
-                    screen.blit(small_font.render(line, True, text_color), (x + 10, y + 40 + j * 20))
-                vote_buttons[p.id].check_hover(mouse_pos); vote_buttons[p.id].draw(screen)
-        peace_button.check_hover(mouse_pos); peace_button.draw(screen)
+        title = font_large.render(f"JOGADOR {player.id}", True, COLOR_PRIMARY)
+        screen.blit(title, title.get_rect(centerx=500, y=50))
+        instr = font.render("Escolha qual das suas duas cartas será a principal.", True, COLOR_SECONDARY)
+        screen.blit(instr, instr.get_rect(centerx=500, y=120))
+        for i, rect in enumerate(card_rects):
+            color = COLOR_SUCCESS if i == selected_card_index else COLOR_PRIMARY
+            pygame.draw.rect(screen, color, rect, 2, border_radius=10)
+            for j, line in enumerate(wrap_text_pixel(player.hand[i], small_font, rect.width - 20)):
+                screen.blit(small_font.render(line, True, COLOR_SECONDARY), small_font.render(line, True, COLOR_SECONDARY).get_rect(centerx=rect.centerx, y=rect.y + 20 + j * 20))
+        if selected_card_index != -1:
+            confirm_button.check_hover(mouse_pos); confirm_button.draw(screen)
         for event in pygame.event.get():
             if event.type == pygame.QUIT: pygame.quit(), sys.exit()
             if event.type == pygame.MOUSEBUTTONDOWN:
-                action_taken = False
-                if peace_button.is_clicked(event.pos):
-                    votes[voter.id] = 'peace'; action_taken = True
-                else:
-                    for player_id, button in vote_buttons.items():
-                        if button.is_clicked(event.pos):
-                            if any(p.id == player_id for p in active_players):
-                                votes[voter.id] = player_id; action_taken = True; break
-                if action_taken:
-                    current_voter_index += 1
-                    if len(votes) < len(active_players):
-                        voter_transition_screen(active_players[current_voter_index].id)
+                for i, rect in enumerate(card_rects):
+                    if rect.collidepoint(mouse_pos): selected_card_index = i
+                if selected_card_index != -1 and confirm_button.is_clicked(mouse_pos):
+                    player.chosen_question = player.hand[selected_card_index]; running = False
         pygame.display.flip(); clock.tick(30)
-    if all(vote == 'peace' for vote in votes.values()):
-        return 'secret_pact', None
-    for p in players: p.votes = 0 
-    for voted_id in [v for v in votes.values() if isinstance(v, int)]:
-        for p in players:
-            if p.id == voted_id: p.votes += 1
-    max_votes, eliminated_player, is_tie = 0, None, False
-    for p in active_players:
-        if p.votes > max_votes: max_votes, eliminated_player, is_tie = p.votes, p, False
-        elif p.votes == max_votes and max_votes > 0: is_tie = True
-    if is_tie: eliminated_player = None 
-    return 'voted', eliminated_player
 
-def end_game_screen(players, reason):
-    quit_button = Button((400, 630, 200, 50), "SAIR DO JOGO")
-    scroll_y, content_height = 0, 0
-    title_text, sub_text, revelation_text = "", "", "A verdade é: não havia um criminoso. Todos eram inocentes, cada um com seus próprios segredos."
-    title_color = COLOR_PRIMARY
-    if reason == "secret_pact":
-        title_text, sub_text, title_color = "O PACTO SILENCIOSO", "Sem saberem as escolhas uns dos outros, todos optaram pela confiança. Vocês quebraram o ciclo e venceram juntos.", COLOR_TRUST
-    elif reason == "max_rounds" or reason == "survivors":
-        title_text, sub_text, title_color = "O CICLO DE DESCONFIANÇA VENCEU", "O jogo terminou, deixando um rastro de acusações. Os sobreviventes... apenas sobreviveram.", COLOR_DANGER
-    all_surfaces = []
-    y_offset = 40
-    for line in wrap_text_pixel(title_text, font_large, 900):
-        all_surfaces.append((font_large.render(line, True, title_color), font_large.render(line, True, title_color).get_rect(centerx=500, top=y_offset))); y_offset += 50
-    y_offset += 20
-    for line in wrap_text_pixel(sub_text, font, 900):
-        all_surfaces.append((font.render(line, True, COLOR_SECONDARY), font.render(line, True, COLOR_SECONDARY).get_rect(centerx=500, top=y_offset))); y_offset += 30
-    y_offset += 20
-    line_surf, line_surf2 = pygame.Surface((800, 1)), pygame.Surface((800, 1)); line_surf.fill(COLOR_PRIMARY); line_surf2.fill(COLOR_PRIMARY)
-    all_surfaces.append((line_surf, line_surf.get_rect(centerx=500, top=y_offset))); y_offset += 20
-    for line in wrap_text_pixel(revelation_text, font, 900):
-        all_surfaces.append((font.render(line, True, (255, 255, 100)), font.render(line, True, (255, 255, 100)).get_rect(centerx=500, top=y_offset))); y_offset += 30
-    y_offset += 20
-    all_surfaces.append((line_surf2, line_surf2.get_rect(centerx=500, top=y_offset))); y_offset += 30
-    content_height = y_offset
+def answering_screen(player):
+    running, yes_button, no_button = True, Button((225, 400, 250, 80), "SIM", text_color=COLOR_SUCCESS, border_color=COLOR_SUCCESS), Button((525, 400, 250, 80), "NÃO", text_color=COLOR_DANGER, border_color=COLOR_DANGER)
+    while running:
+        draw_background(); mouse_pos = pygame.mouse.get_pos(); yes_button.check_hover(mouse_pos); no_button.check_hover(mouse_pos)
+        title = font_large.render(f"JOGADOR {player.id}", True, COLOR_PRIMARY)
+        screen.blit(title, title.get_rect(centerx=500, y=100))
+        question_box = pygame.Rect(100, 200, 800, 150)
+        pygame.draw.rect(screen, COLOR_PRIMARY, question_box, 2, border_radius=10)
+        for i, line in enumerate(wrap_text_pixel(player.chosen_question, font, question_box.width - 40)):
+            screen.blit(font.render(line, True, COLOR_SECONDARY), font.render(line, True, COLOR_SECONDARY).get_rect(centerx=question_box.centerx, y=question_box.y + 30 + i * 30))
+        instr = font.render("Responda secretamente:", True, COLOR_SECONDARY)
+        screen.blit(instr, instr.get_rect(centerx=500, y=360))
+        yes_button.draw(screen); no_button.draw(screen)
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT: pygame.quit(), sys.exit()
+            if event.type == pygame.MOUSEBUTTONDOWN:
+                if yes_button.is_clicked(mouse_pos): player.secret_answer = True; running = False
+                elif no_button.is_clicked(mouse_pos): player.secret_answer = False; running = False
+        pygame.display.flip(); clock.tick(30)
+
+def guessing_phase_screen(players, current_player, round_num):
+    target_player, guess = None, None
+    player_buttons = {p.id: Button((100, 150 + i*60, 200, 50), f"Jogador {p.id}") for i, p in enumerate(players) if p.id != current_player.id}
+    guess_buttons = {"sim": Button((600, 200, 150, 60), "SIM", text_color=COLOR_SUCCESS, border_color=COLOR_SUCCESS), "nao": Button((600, 300, 150, 60), "NÃO", text_color=COLOR_DANGER, border_color=COLOR_DANGER)}
     while True:
         draw_background(); mouse_pos = pygame.mouse.get_pos()
+        title = font_large.render(f"VEZ DO JOGADOR {current_player.id}", True, COLOR_PRIMARY)
+        screen.blit(title, title.get_rect(centerx=500, y=50))
+        screen.blit(font.render("1. Escolha um alvo:", True, COLOR_SECONDARY), (100, 120))
+        for p_id, btn in player_buttons.items():
+            if target_player and p_id == target_player.id: btn.border_color, btn.text_color = COLOR_SUCCESS, COLOR_SUCCESS
+            else: btn.border_color, btn.text_color = COLOR_PRIMARY, COLOR_PRIMARY
+            btn.check_hover(mouse_pos); btn.draw(screen)
+        if target_player:
+            screen.blit(font.render("2. Qual a resposta dele(a) para:", True, COLOR_SECONDARY), (400, 120))
+            q_box = pygame.Rect(400, 150, 500, 180)
+            pygame.draw.rect(screen, COLOR_PRIMARY, q_box, 1)
+            for i, line in enumerate(wrap_text_pixel(target_player.chosen_question, small_font, q_box.width - 20)):
+                screen.blit(small_font.render(line, True, COLOR_SECONDARY), (q_box.x + 10, q_box.y + 10 + i * 20))
+            for g, btn in guess_buttons.items(): btn.check_hover(mouse_pos); btn.draw(screen)
         for event in pygame.event.get():
             if event.type == pygame.QUIT: pygame.quit(), sys.exit()
             if event.type == pygame.MOUSEBUTTONDOWN:
-                if event.button == 4 and content_height > 700: scroll_y = min(scroll_y + 30, 0)
-                if event.button == 5 and content_height > 700: scroll_y = max(scroll_y - 30, 700 - content_height)
-                # O botão de sair não tem offset, então checamos a posição original do mouse
-                if quit_button.rect.collidepoint(mouse_pos): pygame.quit(), sys.exit()
-        
-        for surf, rect in all_surfaces:
-            screen.blit(surf, (rect.x, rect.y + scroll_y))
+                if not target_player:
+                    for p_id, btn in player_buttons.items():
+                        if btn.is_clicked(mouse_pos):
+                            target_player = next(p for p in players if p.id == p_id)
+                else:
+                    if guess_buttons["sim"].is_clicked(mouse_pos): return target_player, True
+                    elif guess_buttons["nao"].is_clicked(mouse_pos): return target_player, False
+        pygame.display.flip(); clock.tick(30)
 
-        quit_button_original_pos = quit_button.rect.copy()
-        quit_button_original_pos.y = quit_button.original_y
-        
-        pygame.draw.rect(screen, COLOR_BG, quit_button_original_pos)
-        quit_button.check_hover(mouse_pos)
+def show_result_screen(guesser, target, result_correct):
+    running, continue_button = True, Button((400, 550, 200, 50), "CONTINUAR")
+    if result_correct:
+        title_text, title_color, sub_text = "CORRETO!", COLOR_SUCCESS, f"Jogador {guesser.id} ganhou 1 ponto. Jogador {target.id} perdeu 1 ponto."
+    else:
+        title_text, title_color, sub_text = "ERRADO!", COLOR_DANGER, "Ninguém pontua."
+    answer_text = "'SIM'" if target.secret_answer else "'NÃO'"
+    reveal_text = f"A resposta do Jogador {target.id} era {answer_text}."
+    while running:
+        draw_background(); mouse_pos = pygame.mouse.get_pos(); continue_button.check_hover(mouse_pos)
+        screen.blit(font_large.render(title_text, True, title_color), font_large.render(title_text, True, title_color).get_rect(centerx=500, y=150))
+        screen.blit(font.render(reveal_text, True, COLOR_SECONDARY), font.render(reveal_text, True, COLOR_SECONDARY).get_rect(centerx=500, y=250))
+        screen.blit(font.render(sub_text, True, COLOR_PRIMARY), font.render(sub_text, True, COLOR_PRIMARY).get_rect(centerx=500, y=350))
+        continue_button.draw(screen)
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT: pygame.quit(), sys.exit()
+            if event.type == pygame.MOUSEBUTTONDOWN and continue_button.is_clicked(mouse_pos): running = False
+        pygame.display.flip(); clock.tick(30)
+
+def end_game_screen(players):
+    quit_button = Button((400, 630, 200, 50), "SAIR DO JOGO")
+    winner = sorted(players, key=lambda p: p.score, reverse=True)[0]
+    while True:
+        draw_background(); mouse_pos = pygame.mouse.get_pos(); quit_button.check_hover(mouse_pos)
+        screen.blit(font_large.render("FIM DE JOGO", True, COLOR_DANGER), font_large.render("FIM DE JOGO", True, COLOR_DANGER).get_rect(centerx=500, y=80))
+        screen.blit(font.render(f"O vencedor é o Jogador {winner.id} com {winner.score} pontos!", True, COLOR_SUCCESS), font.render(f"O vencedor é o Jogador {winner.id} com {winner.score} pontos!", True, COLOR_SUCCESS).get_rect(centerx=500, y=180))
+        screen.blit(font.render("Placar Final:", True, COLOR_PRIMARY), font.render("Placar Final:", True, COLOR_PRIMARY).get_rect(centerx=500, y=250))
+        y_offset = 300
+        for p in sorted(players, key=lambda p: p.score, reverse=True):
+            score_text = f"Jogador {p.id}: {p.score} pontos"
+            screen.blit(font.render(score_text, True, COLOR_SECONDARY), font.render(score_text, True, COLOR_SECONDARY).get_rect(centerx=500, y=y_offset)); y_offset += 40
         quit_button.draw(screen)
-        
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT: pygame.quit(), sys.exit()
+            if event.type == pygame.MOUSEBUTTONDOWN and quit_button.is_clicked(mouse_pos): pygame.quit(), sys.exit()
         pygame.display.flip(); clock.tick(30)
 
 # ====== MAIN GAME LOGIC ======
 def main():
     intro_screen()
     num_players = choose_players_screen()
-    final_stories = random.sample(STORY_POOL, num_players if num_players <= len(STORY_POOL) else len(STORY_POOL))
-    players = []
-    for i, (story, fragment, _) in enumerate(final_stories):
-        p = Player(i + 1, story, fragment)
-        players.append(p)
-    for p in sorted(players, key=lambda p: p.id):
-        transition_screen(p.id)
-        show_full_story(p)
+    players = [Player(i + 1) for i in range(num_players)]
+    
     round_num = 1
     while round_num <= MAX_ROUNDS:
-        round_transition_screen(round_num)
+        # --- FASE 1: DRAFT DE MERCADO SEQUENCIAL ---
+        question_deck = list(QUESTION_POOL)
+        random.shuffle(question_deck)
+        market_cards = [question_deck.pop() for _ in range(num_players * 2)]
+        pick_order = (list(range(num_players)) * 2)
+        for i, player_index in enumerate(pick_order):
+            player = players[player_index]
+            pick_number = (i // num_players) + 1
+            chosen_card, market_cards = market_draft_screen(player, market_cards, pick_number)
+            player.hand.append(chosen_card)
 
-        if len([p for p in players if not p.is_eliminated]) <= 2:
-            end_game_screen(players, "survivors")
-            break
+        # --- FASE 2: Escolha da Pergunta Principal e Resposta Secreta ---
+        for p in players:
+            choose_main_question_screen(p)
+            answering_screen(p)
+
+        # --- FASE 3: Interrogatório ---
+        for i in range(num_players):
+            current_player = players[i]
+            target, guess = guessing_phase_screen(players, current_player, 1) # Mostra sempre "RODADA 1"
+            correct = (guess == target.secret_answer)
+            if correct:
+                current_player.score += 1
+                target.score -= 1
+            show_result_screen(current_player, target, correct)
             
-        discussion_screen(players, round_num)
-        
-        vote_result, eliminated_player = round_screen(players, round_num, MAX_ROUNDS)
-        if vote_result == 'secret_pact':
-            end_game_screen(players, "secret_pact")
-            break
-        
-        if eliminated_player:
-            eliminated_player.is_eliminated = True
-        
-        vote_tally_screen(players, eliminated_player)
-        
         round_num += 1
-    else: 
-        end_game_screen(players, "max_rounds")
+        for p in players:
+            p.hand = []
+
+    end_game_screen(players)
 
 if __name__ == "__main__":
     main()
