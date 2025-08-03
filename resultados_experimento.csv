@@ -1,0 +1,34 @@
+ID_Sessao,ID_Participante,Num_Rodada,Idade,Genero_Participante,Experiencia_com_Jogos,ID_Caso,Tipo_de_Historia,Genero_Suspeito,Tempo_de_Decisao_s,Decisao_Final,Mudanca_de_Voto,Resultado_Real_Caso,Num_Jogadores_Sessao
+SESSAO_1754221359,P1,1,23,Mulher cis,3,4,Fictícia,Feminino,1.88,0,0,0,3
+SESSAO_1754221359,P2,1,15,Homem trans,3,4,Fictícia,Feminino,0.61,1,0,0,3
+SESSAO_1754221359,P3,1,12,Outro,5,4,Fictícia,Feminino,0.65,0,0,0,3
+SESSAO_1754221359,P1,2,23,Mulher cis,3,4,Fictícia,Feminino,0.62,1,1,0,3
+SESSAO_1754221359,P2,2,15,Homem trans,3,4,Fictícia,Feminino,0.65,0,1,0,3
+SESSAO_1754221359,P3,2,12,Outro,5,4,Fictícia,Feminino,0.96,1,1,0,3
+SESSAO_1754221359,P1,3,23,Mulher cis,3,4,Fictícia,Feminino,0.58,0,1,0,3
+SESSAO_1754221359,P2,3,15,Homem trans,3,4,Fictícia,Feminino,0.55,1,1,0,3
+SESSAO_1754221359,P3,3,12,Outro,5,4,Fictícia,Feminino,0.55,0,1,0,3
+SESSAO_1754222424,P1,1,25,Mulher cis,1,2,Fictícia,Masculino,7.85,0,0,0,1
+SESSAO_1754222424,P1,2,25,Mulher cis,1,2,Fictícia,Masculino,6.76,1,1,0,1
+SESSAO_1754222424,P1,3,25,Mulher cis,1,2,Fictícia,Masculino,4.04,1,0,0,1
+SESSAO_1754222424,P1,4,25,Mulher cis,1,2,Fictícia,Masculino,3.67,1,0,0,1
+SESSAO_1754222424,P1,5,25,Mulher cis,1,2,Fictícia,Masculino,5.07,1,0,0,1
+SESSAO_1754222424,P1,6,25,Mulher cis,1,2,Fictícia,Masculino,5.54,1,0,0,1
+SESSAO_1754222814,P1,1,25,Mulher cis,1,3,Fictícia,Masculino,5.64,0,0,1,1
+SESSAO_1754222814,P1,2,25,Mulher cis,1,3,Fictícia,Masculino,16.1,0,0,1,1
+SESSAO_1754222814,P1,3,25,Mulher cis,1,3,Fictícia,Masculino,2.89,0,0,1,1
+SESSAO_1754222814,P1,4,25,Mulher cis,1,3,Fictícia,Masculino,6.94,0,0,1,1
+SESSAO_1754222814,P1,5,25,Mulher cis,1,3,Fictícia,Masculino,5.11,0,0,1,1
+SESSAO_1754222814,P1,6,25,Mulher cis,1,3,Fictícia,Masculino,4.22,1,1,1,1
+SESSAO_1754223001,P1,1,25,Mulher trans,1,1,Real,Feminino,25.26,0,0,0,1
+SESSAO_1754223001,P1,2,25,Mulher trans,1,1,Real,Feminino,0.34,0,0,0,1
+SESSAO_1754223001,P1,3,25,Mulher trans,1,1,Real,Feminino,0.27,0,0,0,1
+SESSAO_1754223001,P1,4,25,Mulher trans,1,1,Real,Feminino,0.36,0,0,0,1
+SESSAO_1754223001,P1,5,25,Mulher trans,1,1,Real,Feminino,0.39,0,0,0,1
+SESSAO_1754223001,P1,6,25,Mulher trans,1,1,Real,Feminino,2.04,0,0,0,1
+SESSAO_1754223412,P1,1,25,Mulher cis,5,3,Fictícia,Masculino,1.42,0,0,1,1
+SESSAO_1754223412,P1,2,25,Mulher cis,5,3,Fictícia,Masculino,0.46,0,0,1,1
+SESSAO_1754223412,P1,3,25,Mulher cis,5,3,Fictícia,Masculino,0.37,0,0,1,1
+SESSAO_1754223412,P1,4,25,Mulher cis,5,3,Fictícia,Masculino,0.32,0,0,1,1
+SESSAO_1754223412,P1,5,25,Mulher cis,5,3,Fictícia,Masculino,0.42,0,0,1,1
+SESSAO_1754223412,P1,6,25,Mulher cis,5,3,Fictícia,Masculino,0.48,0,0,1,1
