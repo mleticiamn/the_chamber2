@@ -27,133 +27,133 @@ COLOR_SCROLLBAR = (0, 150, 200)
 # --- Banco de Casos com Múltiplos Fragmentos ---
 CASE_POOL = [
     {
-        "id": 1, "type": "Real", "suspect_gender": "Feminino", "version": 1,
+        "id": 1, "type": "Real", "suspect_gender": "Masculino", "version": 3,
         "fragments": [
-            "Uma médica é vista saindo apressada de uma sala de cirurgia.",
+            "Um médico é visto saindo apressado de uma sala de cirurgia.",
             "Minutos depois, um alarme soa. Um paciente na mesma sala teve uma parada cardíaca e faleceu.",
-            "Uma enfermeira alega ter ouvido a médica discutir com o paciente momentos antes do alarme.",
-            "A investigação revela que a médica estava em um plantão de 36 horas.",
-            "É descoberto que a médica havia solicitado equipamento de emergência que não foi fornecido pelo hospital.",
+            "Um enfermeiro alega ter ouvido o médico discutir com o paciente momentos antes do alarme.",
+            "A investigação revela que o médico estava em um plantão de 36 horas.",
+            "É descoberto que o médico havia solicitado equipamento de emergência que não foi fornecido pelo hospital.",
             "A autópsia confirma que a condição do paciente era pré-existente e gravíssima, tornando a sobrevivência improvável."
         ],
-        "full_story": "A médica, exausta e trabalhando com recursos inadequados, teve uma discussão com o paciente tentando convencê-lo da necessidade de um procedimento arriscado. Ela saiu para buscar equipamento em outra sala, mas o paciente faleceu antes de sua volta. Foi absolvida por não haver negligência.",
-        "real_outcome": 0 # Inocente
-    },
-    {
-        "id": 2, "type": "Fictícia", "suspect_gender": "Masculino", "version": 1,
-        "fragments": [
-            "Um programador é demitido de uma startup de tecnologia.",
-            "Na mesma noite, o servidor principal da empresa contendo todo o código-fonte é completamente apagado.",
-            "Registros de acesso mostram que o login do programador demitido foi usado para apagar os arquivos.",
-            "O programador tem um álibi: estava em um bar com amigos, longe do escritório.",
-            "Ele alega que sua senha era fraca e conhecida por vários colegas.",
-            "Um colega de equipe, que estava no escritório naquela noite, recentemente teve uma grande discussão com a diretoria por não receber crédito pelo projeto."
-        ],
-        "full_story": "O colega de equipe, sentindo-se injustiçado e sabendo a senha do programador demitido, usou o acesso dele para apagar o servidor, como vingança contra a empresa e para incriminar o ex-colega. O programador era inocente.",
-        "real_outcome": 0 # Inocente
-    },
-    {
-        "id": 3, "type": "Fictícia", "suspect_gender": "Masculino", "version": 1,
-        "fragments": [
-            "Um restaurador de arte é contratado para limpar uma pintura famosa em um museu.",
-            "Após a devolução, um especialista alega que a pintura é uma falsificação quase perfeita.",
-            "O restaurador foi o último a ter acesso exclusivo à obra de arte.",
-            "Uma investigação financeira revela que o restaurador possui grandes dívidas de jogo não declaradas.",
-            "Partículas de um pigmento moderno, inexistente na época do pintor original, são encontradas no ateliê do restaurador.",
-            "Registros bancários mostram um grande depósito anônimo na conta do restaurador uma semana após a devolução da pintura."
-        ],
-        "full_story": "O restaurador, pressionado por dívidas, criou uma cópia meticulosa da obra. Durante o processo de 'restauração', ele trocou a original pela falsa e vendeu a pintura verdadeira no mercado negro para pagar suas dívidas. Ele foi considerado culpado.",
-        "real_outcome": 1 # Culpado
-    },
-    {
-        "id": 4, "type": "Real", "suspect_gender": "Feminino", "version": 1,
-        "fragments": [
-            "A fórmula secreta de um novo produto farmacêutico é vazada para uma empresa concorrente.",
-            "Uma cientista sênior do projeto tinha acesso irrestrito à fórmula.",
-            "Registros mostram que a cientista transferiu o arquivo da fórmula para um pen drive pessoal dias antes do vazamento.",
-            "A cientista alega que fez o backup para trabalhar em uma apresentação em casa e perdeu o pen drive.",
-            "Um assistente de laboratório júnior foi visto usando o computador da cientista fora do horário de expediente.",
-            "O histórico de e-mails do assistente revela contato com um executivo da empresa concorrente."
-        ],
-        "full_story": "O assistente de laboratório, ambicioso e mal-intencionado, roubou o pen drive da cientista e vazou a fórmula para a concorrência em troca de uma oferta de emprego. A cientista foi usada como bode expiatório, mas acabou sendo inocentada.",
-        "real_outcome": 0 # Inocente
-    },
-    {
-        "id": 5, "type": "Fictícia", "suspect_gender": "Masculino", "version": 1,
-        "fragments": [
-            "Um pedestre é morto em um atropelamento e fuga durante a noite.",
-            "Uma testemunha ocular descreve um carro sedan escuro, modelo que corresponde ao do suspeito.",
-            "O carro do suspeito é encontrado em sua garagem com danos na parte dianteira, coberto por uma lona.",
-            "O suspeito afirma que seu carro foi roubado na noite do acidente e que ele só percebeu na manhã seguinte.",
-            "A perícia encontra apenas as impressões digitais do suspeito no volante e no interior do carro.",
-            "Os dados de localização do celular do suspeito o colocam na rua exata do acidente no momento em que ocorreu."
-        ],
-        "full_story": "O suspeito estava dirigindo, distraiu-se e atingiu o pedestre. Em pânico, ele fugiu do local e inventou a história do roubo para tentar escapar da responsabilidade. As provas digitais e forenses provaram sua culpa.",
-        "real_outcome": 1 # Culpado
-    },
-    {
-        "id": 6, "type": "Fictícia", "suspect_gender": "Feminino", "version": 1,
-        "fragments": [
-            "Uma professora é acusada de vazar as respostas de uma prova nacional.",
-            "Um aluno foi pego com uma cópia idêntica à prova oficial antes do exame.",
-            "O arquivo da prova foi acessado no computador da professora na véspera.",
-            "A professora nega envolvimento e afirma que deixou o computador desbloqueado na sala dos professores.",
-            "Câmeras mostram outro docente mexendo no computador enquanto ela estava fora.",
-            "Esse docente confessa ter copiado o arquivo e vendido as respostas a vários alunos."
-        ],
-        "full_story": "A professora foi vítima de negligência ao deixar o computador desbloqueado, mas não participou do vazamento. O verdadeiro culpado era outro professor, que confessou o crime.",
-        "real_outcome": 0 # Inocente
-    },
-    {
-        "id": 7, "type": "Fictícia", "suspect_gender": "Feminino", "version": 1,
-        "fragments": [
-            "Uma influenciadora digital é acusada de fraude em uma campanha de arrecadação para vítimas de enchente.",
-            "Mais de R$ 500 mil foram arrecadados através das redes sociais dela.",
-            "As vítimas afirmam não ter recebido qualquer ajuda proveniente da campanha.",
-            "Extratos mostram transferências da conta da campanha para a conta pessoal da influenciadora.",
-            "Ela alega que fez os saques para agilizar as compras de doações.",
-            "Perícia comprova que parte significativa do dinheiro foi gasta em itens de luxo."
-        ],
-        "full_story": "A influenciadora usou a tragédia para enriquecer, desviando a maior parte dos recursos para gastos pessoais. Foi condenada por estelionato e apropriação indébita.",
-        "real_outcome": 1
-    },
-    {
-        "id": 8, "type": "Real", "suspect_gender": "Masculino", "version": 1,
-        "fragments": [
-            "Um motorista de ônibus é acusado de provocar um acidente fatal.",
-            "Testemunhas dizem que ele dirigia acima da velocidade permitida.",
-            "O tacógrafo indica velocidade 20% superior ao limite no momento do impacto.",
-            "O motorista afirma que o sistema de freios apresentou falha repentina.",
-            "A perícia confirma desgaste excessivo nos freios, incompatível com manutenção recente.",
-            "A empresa responsável admite que ignorou pedidos de revisão feitos pelo motorista."
-        ],
-        "full_story": "O motorista não teve culpa direta; o acidente foi resultado de negligência da empresa que não realizou a manutenção. Ele foi inocentado.",
+        "full_story": "O médico, exausto e trabalhando com recursos inadequados, teve uma discussão com o paciente tentando convencê-lo da necessidade de um procedimento arriscado. Ele saiu para buscar equipamento em outra sala, mas o paciente faleceu antes de sua volta. Foi absolvido por não haver negligência.",
         "real_outcome": 0
     },
     {
-        "id": 9, "type": "Fictícia", "suspect_gender": "Masculino", "version": 1,
+        "id": 2, "type": "Fictícia", "suspect_gender": "Feminino", "version": 3,
         "fragments": [
-            "Um cientista é acusado de manipular dados em uma pesquisa sobre vacinas.",
-            "O artigo publicado apresenta resultados surpreendentes e altamente positivos.",
-            "Colegas notam inconsistências nas planilhas originais e denunciam à instituição.",
-            "O cientista argumenta que as discrepâncias ocorreram por erro de digitação.",
-            "Um backup dos arquivos originais revela dados muito diferentes dos publicados.",
-            "Descobre-se que ele alterou os resultados para garantir financiamento milionário."
+            "Uma programadora é demitida de uma startup de tecnologia.",
+            "Na mesma noite, o servidor principal da empresa contendo todo o código-fonte é completamente apagado.",
+            "Registros de acesso mostram que o login da programadora demitida foi usado para apagar os arquivos.",
+            "A programadora tem um álibi: estava em um bar com amigas, longe do escritório.",
+            "Ela alega que sua senha era fraca e conhecida por várias colegas.",
+            "Uma colega de equipe, que estava no escritório naquela noite, recentemente teve uma grande discussão com a diretoria por não receber crédito pelo projeto."
         ],
-        "full_story": "O cientista cometeu fraude deliberada para manter investimentos no projeto. Foi descredenciado e processado por má conduta científica.",
+        "full_story": "A colega de equipe, sentindo-se injustiçada e sabendo a senha da programadora demitida, usou o acesso dela para apagar o servidor, como vingança contra a empresa e para incriminar a ex-colega. A programadora era inocente.",
+        "real_outcome": 0
+    },
+    {
+        "id": 3, "type": "Fictícia", "suspect_gender": "Feminino", "version": 3,
+        "fragments": [
+            "Uma restauradora de arte é contratada para limpar uma pintura famosa em um museu.",
+            "Após a devolução, um especialista alega que a pintura é uma falsificação quase perfeita.",
+            "A restauradora foi a última a ter acesso exclusivo à obra de arte.",
+            "Uma investigação financeira revela que a restauradora possui grandes dívidas de jogo não declaradas.",
+            "Partículas de um pigmento moderno, inexistente na época da pintora original, são encontradas no ateliê da restauradora.",
+            "Registros bancários mostram um grande depósito anônimo na conta da restauradora uma semana após a devolução da pintura."
+        ],
+        "full_story": "A restauradora, pressionada por dívidas, criou uma cópia meticulosa da obra. Durante o processo de 'restauração', ela trocou a original pela falsa e vendeu a pintura verdadeira no mercado negro para pagar suas dívidas. Ela foi considerada culpada.",
         "real_outcome": 1
     },
     {
-        "id": 10, "type": "Real", "suspect_gender": "Feminino", "version": 1,
+        "id": 4, "type": "Real", "suspect_gender": "Masculino", "version": 3,
         "fragments": [
-            "Uma prefeita é acusada de desviar verbas para festas da cidade.",
-            "Populares afirmam que ela gastava mais com eventos do que com saúde.",
-            "Investigações apontam contratos superfaturados em eventos culturais.",
-            "Ela alega que os contratos foram assinados por um secretário, sem seu conhecimento.",
-            "Testemunhas dizem que ela insistia em festas luxuosas para 'manter popularidade'.",
-            "Perícia contábil prova que as assinaturas nos contratos foram dela."
+            "A fórmula secreta de um novo produto farmacêutico é vazada para uma empresa concorrente.",
+            "Um cientista sênior do projeto tinha acesso irrestrito à fórmula.",
+            "Registros mostram que o cientista transferiu o arquivo da fórmula para um pen drive pessoal dias antes do vazamento.",
+            "O cientista alega que fez o backup para trabalhar em uma apresentação em casa e perdeu o pen drive.",
+            "Um assistente de laboratório júnior foi visto usando o computador do cientista fora do horário de expediente.",
+            "O histórico de e-mails do assistente revela contato com um executivo da empresa concorrente."
         ],
-        "full_story": "A prefeita usou recursos públicos para autopromoção por meio de festas grandiosas. Foi condenada por improbidade administrativa.",
+        "full_story": "O assistente de laboratório, ambicioso e mal-intencionado, roubou o pen drive do cientista e vazou a fórmula para a concorrência em troca de uma oferta de emprego. O cientista foi usado como bode expiatório, mas acabou sendo inocentado.",
+        "real_outcome": 0
+    },
+    {
+        "id": 5, "type": "Fictícia", "suspect_gender": "Feminino", "version": 3,
+        "fragments": [
+            "Uma pedestre é morta em um atropelamento e fuga durante a noite.",
+            "Uma testemunha ocular descreve um carro sedan escuro, modelo que corresponde ao da suspeita.",
+            "O carro da suspeita é encontrado em sua garagem com danos na parte dianteira, coberto por uma lona.",
+            "A suspeita afirma que seu carro foi roubado na noite do acidente e que ela só percebeu na manhã seguinte.",
+            "A perícia encontra apenas as impressões digitais da suspeita no volante e no interior do carro.",
+            "Os dados de localização do celular da suspeita a colocam na rua exata do acidente no momento em que ocorreu."
+        ],
+        "full_story": "A suspeita estava dirigindo, distraiu-se e atingiu a pedestre. Em pânico, ela fugiu do local e inventou a história do roubo para tentar escapar da responsabilidade. As provas digitais e forenses provaram sua culpa.",
+        "real_outcome": 1
+    },
+    {
+        "id": 6, "type": "Fictícia", "suspect_gender": "Masculino", "version": 3,
+        "fragments": [
+            "Um professor é acusado de vazar as respostas de uma prova nacional.",
+            "Um aluno foi pego com uma cópia idêntica à prova oficial antes do exame.",
+            "O arquivo da prova foi acessado no computador do professor na véspera.",
+            "O professor nega envolvimento e afirma que deixou o computador desbloqueado na sala dos professores.",
+            "Câmeras mostram outra docente mexendo no computador enquanto ele estava fora.",
+            "Essa docente confessa ter copiado o arquivo e vendido as respostas a vários alunos."
+        ],
+        "full_story": "O professor foi vítima de negligência ao deixar o computador desbloqueado, mas não participou do vazamento. A verdadeira culpada era outra professora, que confessou o crime.",
+        "real_outcome": 0
+    },
+    {
+        "id": 7, "type": "Fictícia", "suspect_gender": "Masculino", "version": 3,
+        "fragments": [
+            "Um influenciador digital é acusado de fraude em uma campanha de arrecadação para vítimas de enchente.",
+            "Mais de R$ 500 mil foram arrecadados através das redes sociais dele.",
+            "As vítimas afirmam não ter recebido qualquer ajuda proveniente da campanha.",
+            "Extratos mostram transferências da conta da campanha para a conta pessoal do influenciador.",
+            "Ele alega que fez os saques para agilizar as compras de doações.",
+            "Perícia comprova que parte significativa do dinheiro foi gasta em itens de luxo."
+        ],
+        "full_story": "O influenciador usou a tragédia para enriquecer, desviando a maior parte dos recursos para gastos pessoais. Foi condenado por estelionato e apropriação indébita.",
+        "real_outcome": 1
+    },
+    {
+        "id": 8, "type": "Real", "suspect_gender": "Feminino", "version": 3,
+        "fragments": [
+            "Uma motorista de ônibus é acusada de provocar um acidente fatal.",
+            "Testemunhas dizem que ela dirigia acima da velocidade permitida.",
+            "O tacógrafo indica velocidade 20% superior ao limite no momento do impacto.",
+            "A motorista afirma que o sistema de freios apresentou falha repentina.",
+            "A perícia confirma desgaste excessivo nos freios, incompatível com manutenção recente.",
+            "A empresa responsável admite que ignorou pedidos de revisão feitos pela motorista."
+        ],
+        "full_story": "A motorista não teve culpa direta; o acidente foi resultado de negligência da empresa que não realizou a manutenção. Ela foi inocentada.",
+        "real_outcome": 0
+    },
+    {
+        "id": 9, "type": "Fictícia", "suspect_gender": "Feminino", "version": 3,
+        "fragments": [
+            "Uma cientista é acusada de manipular dados em uma pesquisa sobre vacinas.",
+            "O artigo publicado apresenta resultados surpreendentes e altamente positivos.",
+            "Colegas notam inconsistências nas planilhas originais e denunciam à instituição.",
+            "A cientista argumenta que as discrepâncias ocorreram por erro de digitação.",
+            "Um backup dos arquivos originais revela dados muito diferentes dos publicados.",
+            "Descobre-se que ela alterou os resultados para garantir financiamento milionário."
+        ],
+        "full_story": "A cientista cometeu fraude deliberada para manter investimentos no projeto. Foi descredenciada e processada por má conduta científica.",
+        "real_outcome": 1
+    },
+    {
+        "id": 10, "type": "Real", "suspect_gender": "Masculino", "version": 3,
+        "fragments": [
+            "Um prefeito é acusado de desviar verbas para festas da cidade.",
+            "Populares afirmam que ele gastava mais com eventos do que com saúde.",
+            "Investigações apontam contratos superfaturados em eventos culturais.",
+            "Ele alega que os contratos foram assinados por um secretário, sem seu conhecimento.",
+            "Testemunhas dizem que ele insistia em festas luxuosas para 'manter popularidade'.",
+            "Perícia contábil prova que as assinaturas nos contratos foram dele."
+        ],
+        "full_story": "O prefeito usou recursos públicos para autopromoção por meio de festas grandiosas. Foi condenado por improbidade administrativa.",
         "real_outcome": 1
     }
 ]
@@ -424,13 +424,13 @@ def main():
             "Idade": player.age, "Genero_Participante": player.gender, "Experiencia_com_Jogos": player.experience,
             "ID_Caso": current_case['id'], "Tipo_de_Historia": current_case['type'], "Genero_Suspeito": current_case['suspect_gender'],
             "Tempo_de_Decisao_s": decision_time, "Decisao_Final": decision, "Mudanca_de_Voto": mudanca_voto,
-            "Resultado_Real_Caso": current_case['real_outcome'], "Num_Jogadores_Sessao": 1, "Versão": 1
+            "Resultado_Real_Caso": current_case['real_outcome'], "Num_Jogadores_Sessao": 1, "Versão": 2
         }
         collected_data.append(data_row)
 
     final_revelation_screen(current_case)
 
-    output_filename = "resultados_experimento.csv"
+    output_filename = "resultados_experimento_v2.csv"
     file_exists = os.path.isfile(output_filename)
 
     try:

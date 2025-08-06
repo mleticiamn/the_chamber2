@@ -1,0 +1,7 @@
+ID_Sessao,ID_Participante,Num_Rodada,Idade,Genero_Participante,Experiencia_com_Jogos,ID_Caso,Tipo_de_Historia,Genero_Suspeito,Tempo_de_Decisao_s,Decisao_Final,Mudanca_de_Voto,Resultado_Real_Caso,Num_Jogadores_Sessao,Versão
+SESSAO_1754448364,P1,1,12,Mulher cis,3,4,Real,Masculino,18.41,1,0,0,1,2
+SESSAO_1754448364,P1,2,12,Mulher cis,3,4,Real,Masculino,1.99,1,0,0,1,2
+SESSAO_1754448364,P1,3,12,Mulher cis,3,4,Real,Masculino,4.82,1,0,0,1,2
+SESSAO_1754448364,P1,4,12,Mulher cis,3,4,Real,Masculino,3.58,1,0,0,1,2
+SESSAO_1754448364,P1,5,12,Mulher cis,3,4,Real,Masculino,2.15,1,0,0,1,2
+SESSAO_1754448364,P1,6,12,Mulher cis,3,4,Real,Masculino,3.53,0,1,0,1,2
