@@ -90,6 +90,71 @@ CASE_POOL = [
         ],
         "full_story": "O suspeito estava dirigindo, distraiu-se e atingiu o pedestre. Em pânico, ele fugiu do local e inventou a história do roubo para tentar escapar da responsabilidade. As provas digitais e forenses provaram sua culpa.",
         "real_outcome": 1 # Culpado
+    },
+    {
+        "id": 6, "type": "Fictícia", "suspect_gender": "Feminino",
+        "fragments": [
+            "Uma professora é acusada de vazar as respostas de uma prova nacional.",
+            "Um aluno foi pego com uma cópia idêntica à prova oficial antes do exame.",
+            "O arquivo da prova foi acessado no computador da professora na véspera.",
+            "A professora nega envolvimento e afirma que deixou o computador desbloqueado na sala dos professores.",
+            "Câmeras mostram outro docente mexendo no computador enquanto ela estava fora.",
+            "Esse docente confessa ter copiado o arquivo e vendido as respostas a vários alunos."
+        ],
+        "full_story": "A professora foi vítima de negligência ao deixar o computador desbloqueado, mas não participou do vazamento. O verdadeiro culpado era outro professor, que confessou o crime.",
+        "real_outcome": 0 # Inocente
+    },
+    {
+        "id": 7, "type": "Fictícia", "suspect_gender": "Feminino",
+        "fragments": [
+            "Uma influenciadora digital é acusada de fraude em uma campanha de arrecadação para vítimas de enchente.",
+            "Mais de R$ 500 mil foram arrecadados através das redes sociais dela.",
+            "As vítimas afirmam não ter recebido qualquer ajuda proveniente da campanha.",
+            "Extratos mostram transferências da conta da campanha para a conta pessoal da influenciadora.",
+            "Ela alega que fez os saques para agilizar as compras de doações.",
+            "Perícia comprova que parte significativa do dinheiro foi gasta em itens de luxo."
+        ],
+        "full_story": "A influenciadora usou a tragédia para enriquecer, desviando a maior parte dos recursos para gastos pessoais. Foi condenada por estelionato e apropriação indébita.",
+        "real_outcome": 1
+    },
+    {
+        "id": 8, "type": "Real", "suspect_gender": "Masculino",
+        "fragments": [
+            "Um motorista de ônibus é acusado de provocar um acidente fatal.",
+            "Testemunhas dizem que ele dirigia acima da velocidade permitida.",
+            "O tacógrafo indica velocidade 20% superior ao limite no momento do impacto.",
+            "O motorista afirma que o sistema de freios apresentou falha repentina.",
+            "A perícia confirma desgaste excessivo nos freios, incompatível com manutenção recente.",
+            "A empresa responsável admite que ignorou pedidos de revisão feitos pelo motorista."
+        ],
+        "full_story": "O motorista não teve culpa direta; o acidente foi resultado de negligência da empresa que não realizou a manutenção. Ele foi inocentado.",
+        "real_outcome": 0
+    },
+    {
+        "id": 9, "type": "Fictícia", "suspect_gender": "Masculino",
+        "fragments": [
+            "Um cientista é acusado de manipular dados em uma pesquisa sobre vacinas.",
+            "O artigo publicado apresenta resultados surpreendentes e altamente positivos.",
+            "Colegas notam inconsistências nas planilhas originais e denunciam à instituição.",
+            "O cientista argumenta que as discrepâncias ocorreram por erro de digitação.",
+            "Um backup dos arquivos originais revela dados muito diferentes dos publicados.",
+            "Descobre-se que ele alterou os resultados para garantir financiamento milionário."
+        ],
+        "full_story": "O cientista cometeu fraude deliberada para manter investimentos no projeto. Foi descredenciado e processado por má conduta científica.",
+        "real_outcome": 1
+    },
+    {
+        "id": 10, "type": "Real", "suspect_gender": "Feminino",
+        "fragments": [
+            "Uma prefeita é acusada de desviar verbas para festas da cidade.",
+            "Populares afirmam que ela gastava mais com eventos do que com saúde.",
+            "Investigações apontam contratos superfaturados em eventos culturais.",
+            "Ela alega que os contratos foram assinados por um secretário, sem seu conhecimento.",
+            "Testemunhas dizem que ela insistia em festas luxuosas para 'manter popularidade'.",
+            "Perícia contábil prova que as assinaturas nos contratos foram dela."
+        ],
+        "full_story": "A prefeita usou recursos públicos para autopromoção por meio de festas grandiosas. Foi condenada por improbidade administrativa.",
+        "real_outcome": 1
     }
 ]
 
